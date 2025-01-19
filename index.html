@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="flex justify-center items-center h-screen" id="container">
+        <div id="name-ques">
+            <h1 class="font-bold text-2xl text-center p-4">
+                Does your name starts with "K" and pronounced as 🍪?
+            </h1>
+            <div class="flex justify-center mt-8">
+                <button class="mr-4 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"  id="accept-one">Yes</button>
+                <button class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700" id="reject-one">No</button>
+            </div>
+    
+        </div>
+
+        <div id="valentine-ques" style="display: none;">
+            <div class="flex justify-center">
+                <img src="./assets/goose.gif" alt="goose">
+            </div>
+            <h1 class="font-bold text-2xl text-center p-4">
+                Will you be my valentine kuky?
+            </h1>
+            <div class="flex justify-center mt-8">
+                <button class="mr-4 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"  id="accept-two">Yes</button>
+                <button class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700" id="reject-two">No</button>
+            </div>
+    
+        </div>
+
+        <div id="valentine-accepted" style="display: none;">
+            <div class="flex justify-center">
+                <img src="./assets/goose-kissing.gif" alt="goose kissing">
+            </div>
+            <h1 class="font-bold text-2xl text-center">
+                I love you kuky 💖😘🥰
+            </h1>
+        </div>
+       
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#reject-one').on('click', function() {
+                $('#name-ques').hide();
+                $('#container').css('background-image', 'url("./assets/exit.gif"');
+            })
+
+            $('#accept-one').on('click', function() {
+                $('#name-ques').hide();
+                $('#valentine-ques').show();
+                // $('#container').css('background-image', 'url("./assets/bg.jpg"');
+            })
+
+            const rejectResponses = ['Are you sure? 😭', 'pretty please 🥺', 'boba khana lagchu kanchi 😉', 'Mazzaako cafe lagchu ni ta 😢', 'POOKIE PLEASE', 'Babe testo nagara na 😞', 'Please 😔', 'Nooo 😥', '💔💔💔']
+            let index = 0;
+
+            $('#reject-two').on('click', function() {
+                if(index < 8) {
+                    $(this).text(rejectResponses[index]);
+
+                    index = (index + 1) % rejectResponses.length;
+                }
+                
+
+                let currentSize = parseInt($('#accept-two').css('font-size'));
+                
+                let newSize = currentSize + 30;
+
+                $('#accept-two').css('font-size', newSize + 'px');
+            })
+
+            $('#accept-two').on('click', function() {
+                $('#valentine-ques').hide();
+                $('#valentine-accepted').show();
+                $('#container').css('background-image', 'url("./assets/bg.jpg"');
+            })
+      
+        });
+      </script>
+</body>
+</html>
